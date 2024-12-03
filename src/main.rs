@@ -1,8 +1,10 @@
-use anyhow::{anyhow, Error};
+use anyhow::{anyhow, Context, Error};
 
 fn parse_then_send(input: &[u8]) -> Result<(), Error> {
-    let some_str = std::str::from_utf8(input)?;
-    let number = some_str.parse::<i32>()?;
+    let some_str = std::str::from_utf8(input)
+        .with_context(|| "Couldn't parse into a str")?;
+    let number = some_str.parse::<i32>()
+        .with_context(|| format!("Got a weird str to parse: {})", some_str))?;
     send_number(number)?;
     Ok(())
 }
