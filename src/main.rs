@@ -20,4 +20,5 @@ fn send_number(number: i32) -> Result<(), Error> {
 fn main() {
     println!("{:?}", parse_then_send(b"nine"));
     println!("{:?}", parse_then_send(b"10"));
+    println!("{:?}", parse_then_send(b"100000000"));
 }
